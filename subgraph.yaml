@@ -1,0 +1,51 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: PowerIndexPool
+    network: mainnet
+    source:
+      address: "0xb4bebD34f6DaaFd808f73De0d10235a92Fbb6c3D"
+      abi: PowerIndexPool
+      startBlock: 11419983
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - LOG_CALL
+        - LOG_CALL_VOTING
+        - LOG_COMMUNITY_FEE
+        - LOG_EXIT
+        - LOG_JOIN
+        - LOG_SWAP
+        - SetDynamicWeight
+        - SetWeightPerSecondBounds
+        - Transfer
+      abis:
+        - name: PowerIndexPool
+          file: ./abis/PowerIndexPool.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: LOG_CALL(indexed bytes4,indexed address,bytes)
+          handler: handleLOG_CALL
+        - event: LOG_CALL_VOTING(indexed address,indexed bool,indexed bytes4,bytes,bytes)
+          handler: handleLOG_CALL_VOTING
+        - event: LOG_COMMUNITY_FEE(indexed address,indexed address,indexed address,uint256)
+          handler: handleLOG_COMMUNITY_FEE
+        - event: LOG_EXIT(indexed address,indexed address,uint256)
+          handler: handleLOG_EXIT
+        - event: LOG_JOIN(indexed address,indexed address,uint256)
+          handler: handleLOG_JOIN
+        - event: LOG_SWAP(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleLOG_SWAP
+        - event: SetDynamicWeight(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleSetDynamicWeight
+        - event: SetWeightPerSecondBounds(uint256,uint256)
+          handler: handleSetWeightPerSecondBounds
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mapping.ts

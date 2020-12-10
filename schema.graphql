@@ -1,0 +1,84 @@
+type Approval_ @entity {
+  id: ID!
+  count: BigInt!
+  owner: Bytes!
+  spender: Bytes!
+  value: BigInt!
+}
+
+type LOG_CALL_ @entity {
+  id: ID!
+  count: BigInt!
+  sig: Bytes!
+  caller: Bytes!
+  data: Bytes!
+}
+
+type LOG_CALL_VOTING_ @entity {
+  id: ID!
+  count: BigInt!
+  voting: Bytes!
+  success: Boolean!
+  inputSig: Bytes!
+  inputData: Bytes!
+  outputData: Bytes!
+}
+
+type LOG_COMMUNITY_FEE_ @entity {
+  id: ID!
+  count: BigInt!
+  caller: Bytes!
+  receiver: Bytes!
+  token: Bytes!
+  tokenAmount: BigInt!
+}
+
+type LOG_EXIT_ @entity {
+  id: ID!
+  count: BigInt!
+  caller: Bytes!
+  tokenOut: Bytes!
+  tokenAmountOut: BigInt!
+}
+
+type LOG_JOIN_ @entity {
+  id: ID!
+  count: BigInt!
+  caller: Bytes!
+  tokenIn: Bytes!
+  tokenAmountIn: BigInt!
+}
+
+type LOG_SWAP_ @entity {
+  id: ID!
+  count: BigInt!
+  tokenIn: Bytes!
+  tokenOut: Bytes!
+  tokenAmountIn: BigInt!
+  tokenAmountOut: BigInt!
+}
+
+type SetDynamicWeight_ @entity {
+  id: ID!
+  count: BigInt!
+  token: Bytes!
+  fromDenorm: BigInt!
+  targetDenorm: BigInt!
+  fromTimestamp: BigInt!
+  targetTimestamp: BigInt!
+}
+
+type SetWeightPerSecondBounds_ @entity {
+  id: ID!
+  count: BigInt!
+  minWeightPerSecond: BigInt!
+  maxWeightPerSecond: BigInt!
+}
+
+type Transfer_ @entity {
+  id: ID!
+  count: BigInt!
+  from: Bytes!
+  to: Bytes!
+  value: BigInt!
+}
